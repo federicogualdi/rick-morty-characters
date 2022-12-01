@@ -6,6 +6,12 @@ import CharacterItem from './character';
 import CharacterModal from './character-modal';
 
 const characterStyles = createUseStyles({
+  'characters-container': {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   characters: {
     display: 'flex',
     justifyContent: 'center',
@@ -49,7 +55,8 @@ const CharacterList = () => {
   const styles = characterStyles();
   return (
     <>
-      <section>
+      <section className={styles['characters-container']}>
+        <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <div className={styles.characters}>{listItems}</div>
         <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </section>
