@@ -1,3 +1,3 @@
-export * from './characters';
-// export * from './episode';
-// export * from './location';
+export * from './characters.api';
+export * from './episode.api';
+export * from './location.api';

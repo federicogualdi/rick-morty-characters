@@ -2,7 +2,7 @@ import React from 'react';
 type Pagination = {
   nPages: number;
   currentPage: number;
-  setCurrentPage: any;
+  setCurrentPage: (page: number) => void;
 };
 export const Pagination = ({ nPages, currentPage, setCurrentPage }: Pagination) => {
   const pages = Array.from(Array(nPages + 1).keys()).slice(1);
