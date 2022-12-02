@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Character, CharacterFilter, getCharacters } from '../api/rick-and-morty';
-import { Pagination } from '../shared/pagination/Pagination';
+import InputBox from '../shared/components/input-box';
+import Pagination from '../shared/pagination/Pagination';
 import CharacterItem from './character';
 import CharacterModal from './character-modal';
 
@@ -10,7 +11,9 @@ const characterStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    background: 'rgb(32, 35, 41)',
+    minHeight: '50vh'
   },
   characters: {
     display: 'flex',
@@ -18,6 +21,11 @@ const characterStyles = createUseStyles({
     alignItems: 'center',
     flexWrap: 'wrap',
     maxWidth: '1920px'
+  },
+  inputBox: {
+    position: 'sticky',
+    top: '1rem',
+    zIndex: 10
   }
 });
 
@@ -28,6 +36,7 @@ const CharacterList = () => {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [character, setCharacter] = useState<Character>();
+  const [filterName, setFilterName] = useState<string>();
 
   useEffect(() => {
     const characterApi = async (filters?: CharacterFilter) =>
@@ -36,8 +45,8 @@ const CharacterList = () => {
         setNPages(res.info?.pages!);
       });
 
-    characterApi({ page: currentPage });
-  }, [currentPage]);
+    characterApi({ page: currentPage, name: filterName });
+  }, [currentPage, filterName]);
 
   const listItems = characters.map((character) => (
     <CharacterItem
@@ -52,9 +61,18 @@ const CharacterList = () => {
     setIsModalOpen(true);
   };
 
+  const handleFilterName = (value: string) => {
+    setFilterName(value);
+    setCurrentPage(1);
+  };
+
   const styles = characterStyles();
   return (
     <>
+      <InputBox
+        className={!isModalOpen ? styles.inputBox : ''}
+        onChange={handleFilterName}
+      ></InputBox>
       <section className={styles['characters-container']}>
         <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <div className={styles.characters}>{listItems}</div>

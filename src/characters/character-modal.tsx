@@ -7,6 +7,9 @@ const locationApi = async (url: string) => await getLocationByUrl(url);
 
 const episodeApi = async (ids: string[]) => await getEpisodeByIds(ids);
 
+const lockUnlockScroll = (isModalOpen: boolean) =>
+  (document.body.style.overflow = isModalOpen ? 'hidden' : 'unset');
+
 const CharacterModal = (props: {
   character?: Character;
   isModalOpen: boolean;
@@ -18,10 +21,11 @@ const CharacterModal = (props: {
       locationApi(character.location.url),
       episodeApi(idEpisodes)
     ]);
-    console.log(location, episodes);
     return { location, episodes };
   };
+
   if (props?.character) getCharacterDetails(props?.character);
+  lockUnlockScroll(props.isModalOpen);
 
   return (
     <>

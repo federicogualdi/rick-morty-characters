@@ -23,7 +23,8 @@ const modalStyles = createUseStyles({
     color: 'white',
     zIndex: '10',
     borderRadius: '16px',
-    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)'
+    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)',
+    maxHeight: '80vh'
   },
   modalHeader: {
     height: '50px',
@@ -44,7 +45,8 @@ const modalStyles = createUseStyles({
     padding: '10px',
     fontSize: '14px',
     color: '#2c3e50',
-    textAlign: 'center'
+    textAlign: 'center',
+    maxHeight: '70vh'
   },
   modalActions: {
     bottom: '2px',
@@ -79,7 +81,7 @@ const Modal = ({ title, setIsOpen, body }: Modal) => {
   const styles = modalStyles();
   return (
     <>
-      <div className={styles.darkBG} onClick={() => setIsOpen(false)}>
+      <div className={styles.darkBG}>
         <div className={styles.modal}>
           <div className={styles.modalHeader}>
             <h5 className={styles.heading}>{title}</h5>
