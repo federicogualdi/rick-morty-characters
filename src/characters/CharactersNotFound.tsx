@@ -12,7 +12,7 @@ const charactersNotFoundStyles = createUseStyles({
 });
 
 const noCharactersFound = (className: string, characterSearched?: string) => {
-  if (!characterSearched) return <span className={className}>No Chatacters Found</span>;
+  if (!characterSearched) return <span className={className}>No Characters Found</span>;
 
   return (
     <span className={className}>

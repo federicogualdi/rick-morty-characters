@@ -19,16 +19,16 @@ const modalStyles = createUseStyles({
     top: 0
   },
   modal: {
-    background: 'white',
+    backgroundColor: 'rgb(60, 62, 68)',
     color: 'white',
     zIndex: '10',
     borderRadius: '16px',
-    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)',
-    maxHeight: '80vh'
+    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)'
+    //maxHeight: '80vh'
   },
   modalHeader: {
     height: '50px',
-    background: 'white',
+    backgroundColor: 'rgb(60, 62, 68)',
     overflow: 'hidden',
     borderTopLeftRadius: '16px',
     borderTopRightRadius: '16px'
@@ -36,17 +36,17 @@ const modalStyles = createUseStyles({
   heading: {
     margin: '0',
     padding: '10px',
-    color: '#2c3e50',
+    color: 'white',
     fontWeight: '500',
-    fontSize: '18px',
+    fontSize: '2rem',
     textAlign: 'center'
   },
   modalContent: {
     padding: '10px',
     fontSize: '14px',
     color: '#2c3e50',
-    textAlign: 'center',
-    maxHeight: '70vh'
+    textAlign: 'center'
+    //: '70vh'
   },
   modalActions: {
     bottom: '2px',
