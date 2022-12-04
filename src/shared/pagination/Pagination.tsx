@@ -32,15 +32,15 @@ const paginationStyles = createUseStyles({
   }
 });
 
-const siblingCount = 2;
+const siblingCount = 1;
 
 const leftSiblingIndex = (currentPage: number) => Math.max(currentPage - siblingCount, 1);
-const shouldShowLeftDots = (currentPage: number) => leftSiblingIndex(currentPage) > 2;
+const shouldShowLeftDots = (currentPage: number) => leftSiblingIndex(currentPage) > siblingCount;
 
 const rightSiblingIndex = (currentPage: number, pages: number[]) =>
   Math.min(currentPage + siblingCount, pages.length);
 const shouldShowRightDots = (currentPage: number, pages: number[]) =>
-  rightSiblingIndex(currentPage, pages) < pages.length - 2;
+  rightSiblingIndex(currentPage, pages) < pages.length - siblingCount;
 
 const pageToRender = (pages: number[], currentPage: number) => {
   const pageToRender = new Set<number>();

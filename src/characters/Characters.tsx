@@ -51,10 +51,10 @@ const Characters = () => {
     lockUnlockScroll(isModalOpen);
   }, [isModalOpen]);
 
-  useEffect(() => {
-    setFilterName(filterName);
+  const onChangeFilterName = (value: string) => {
     setCurrentPage(1);
-  }, [filterName]);
+    setFilterName(value);
+  };
 
   const onCharacterClickHandler = (character: Character) => {
     setSelectedCharacter(character);
@@ -64,7 +64,7 @@ const Characters = () => {
   const styles = characterStyles();
   return (
     <>
-      {DebouncedInputBox(!isModalOpen, setFilterName)}
+      {DebouncedInputBox(!isModalOpen, onChangeFilterName)}
       <section className={styles['characters-container']}>
         <>
           <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
