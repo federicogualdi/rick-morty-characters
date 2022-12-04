@@ -1,2 +1,2 @@
-export * from './models/models';
-export * from './api/api';
+export * from './models/Models';
+export * from './api/Api';

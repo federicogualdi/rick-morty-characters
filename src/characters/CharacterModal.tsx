@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Character, getEpisodeByIds, getLocationByUrl } from '../api/rick-and-morty';
 import Modal from '../shared/modal/Modal';
-import CharacterDetails from './character-details';
+import CharacterDetails from './CharacterDetails';
 
 const locationApi = async (url: string) => await getLocationByUrl(url);
 
@@ -21,7 +21,7 @@ const CharacterModal = (props: {
   setIsModalOpen: (isOpen: boolean) => void;
 }) => {
   useEffect(() => {
-    getCharacterDetails(props.character);
+    getCharacterDetails(props.character).catch((e: Error) => console.warn(e?.message));
   }, [props.character]);
 
   return (

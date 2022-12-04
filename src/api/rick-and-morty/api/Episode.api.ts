@@ -1,4 +1,4 @@
-import { Episode } from '../models/interfaces';
+import { Episode } from '../models/Interfaces';
 
 const EPISODES_ENDPOINT = 'https://rickandmortyapi.com/api/episode';
 

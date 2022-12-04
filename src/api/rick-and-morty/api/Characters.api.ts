@@ -1,4 +1,4 @@
-import { Character, CharacterFilter, Info } from '../models/models';
+import { Character, CharacterFilter, Info } from '../models/Models';
 
 const CHARACTERS_ENDPOINT = 'https://rickandmortyapi.com/api/character';
 
