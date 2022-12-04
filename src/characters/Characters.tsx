@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { Character, CharacterFilter, getCharacters } from '../api/rick-and-morty';
 import DebouncedInputBox from '../shared/components/DebouncedInputBox';
 import Pagination from '../shared/pagination/Pagination';
-import CharacterModal from './CharacterModal';
+import CharacterModal from './character/CharacterModal';
 import CharacterList from './CharacterList';
 import CharactersNotFound from './CharactersNotFound';
 
@@ -14,12 +14,14 @@ const characterStyles = createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     background: 'rgb(32, 35, 41)',
-    minHeight: '50vh'
+    minHeight: '60vh'
   }
 });
 
 const lockUnlockScroll = (isModalOpen: boolean) =>
   (document.body.style.overflow = isModalOpen ? 'hidden' : 'unset');
+
+const scroolToTop = () => window.scrollTo(0, 0);
 
 const Characters = () => {
   const [nPages, setNPages] = useState<number>(0);
@@ -42,7 +44,7 @@ const Characters = () => {
       });
 
     setIsLoading(true);
-    characterApi({ page: currentPage, name: filterName });
+    characterApi({ page: currentPage, name: filterName }).then(() => scroolToTop());
   }, [currentPage, filterName]);
 
   useEffect(() => {

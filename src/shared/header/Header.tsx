@@ -7,11 +7,16 @@ const headerStyles = createUseStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '50vh'
+    height: '30vh'
   },
   'header-title': {
     fontSize: '4rem',
     textAlign: 'center'
+  },
+  '@media screen and (max-width: 600px)': {
+    'header-title': {
+      fontSize: '2.5rem'
+    }
   }
 });
 

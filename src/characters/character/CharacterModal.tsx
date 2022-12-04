@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Character, getEpisodeByIds, getLocationByUrl } from '../api/rick-and-morty';
-import Modal from '../shared/modal/Modal';
+import { getLocationByUrl, getEpisodeByIds, Character } from '../../api/rick-and-morty';
+import Modal from '../../shared/modal/Modal';
 import CharacterDetails from './CharacterDetails';
 
 const locationApi = async (url: string) => await getLocationByUrl(url);

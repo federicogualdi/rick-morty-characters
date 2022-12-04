@@ -1,5 +1,5 @@
 import React from 'react';
-import { Character } from '../api/rick-and-morty';
+import { Character } from '../../api/rick-and-morty';
 
 const CharacterDetails = (character: Character) => {
   return (

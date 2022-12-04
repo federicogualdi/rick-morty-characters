@@ -1,6 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { Character } from '../api/rick-and-morty';
+import { Character } from '../../api/rick-and-morty';
+import Gender from '../../shared/components/character/Gender';
+import Status from '../../shared/components/character/Status';
 
 const characterStyles = createUseStyles({
   character: {
@@ -33,10 +35,24 @@ const characterStyles = createUseStyles({
   'character-container-data': {
     flex: '3 1 0%',
     position: 'relative',
-    padding: '0.75rem',
+    padding: '1.25rem',
     color: 'rgb(255, 255, 255)',
     display: 'flex',
     flexDirection: 'column'
+  },
+  'character-container-data-container': {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '1.15rem'
+  },
+  'character-container-data-main': {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  'character-container-data-main-element': {
+    marginTop: 0,
+    marginBottom: 0
   },
   '@media screen and (max-width: 600px)': {
     character: {
@@ -44,6 +60,10 @@ const characterStyles = createUseStyles({
       height: 'initial',
       width: '100%'
     }
+  },
+  'text-description': {
+    color: 'grey',
+    marginBottom: '0.5rem'
   }
 });
 
@@ -63,18 +83,28 @@ const CharacterItem = (props: {
           />
         </div>
         <div className={styles['character-container-data']}>
-          <h2>{props.character.name}</h2>
-          <span>
-            {props.character.status} - {props.character.species} - {props.character.gender}
-          </span>
-          <div>
-            <span>Origin</span>
+          <section>
+            <section className={styles['character-container-data-main']}>
+              <h2 className={styles['character-container-data-main-element']}>
+                {props.character.name}
+              </h2>
+              {Gender(props.character.gender)}
+            </section>
+            <section className={styles['character-container-data-main']}>
+              {Status(props.character.status)}
+              <span>
+                {props.character.status} - {props.character.species}
+              </span>
+            </section>
+          </section>
+          <section className={styles['character-container-data-container']}>
+            <span className={styles['text-description']}>Origin:</span>
             <a>{props.character.origin.name}</a>
-          </div>
-          <div>
-            <span>Location</span>
+          </section>
+          <section className={styles['character-container-data-container']}>
+            <span className={styles['text-description']}>Last known location:</span>
             <a>{props.character.location.name}</a>
-          </div>
+          </section>
         </div>
       </article>
     </>

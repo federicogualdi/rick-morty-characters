@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Character } from '../api/rick-and-morty';
-import CharacterItem from './Character';
+import CharacterItem from './character/CharacterItem';
 
 const characterStyles = createUseStyles({
   characters: {
@@ -9,7 +9,8 @@ const characterStyles = createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    maxWidth: '1920px'
+    maxWidth: '1920px',
+    padding: '1.5rem'
   }
 });
 
