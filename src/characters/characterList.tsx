@@ -29,6 +29,9 @@ const characterStyles = createUseStyles({
   }
 });
 
+const lockUnlockScroll = (isModalOpen: boolean) =>
+  (document.body.style.overflow = isModalOpen ? 'hidden' : 'unset');
+
 const CharacterList = () => {
   const [nPages, setNPages] = useState<number>(0);
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -47,6 +50,10 @@ const CharacterList = () => {
 
     characterApi({ page: currentPage, name: filterName });
   }, [currentPage, filterName]);
+
+  useEffect(() => {
+    lockUnlockScroll(isModalOpen);
+  }, [isModalOpen]);
 
   const listItems = characters.map((character) => (
     <CharacterItem
@@ -78,7 +85,7 @@ const CharacterList = () => {
         <div className={styles.characters}>{listItems}</div>
         <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </section>
-      {CharacterModal({ character, isModalOpen, setIsModalOpen })}
+      {isModalOpen && <CharacterModal character={character!} setIsModalOpen={setIsModalOpen} />}
     </>
   );
 };

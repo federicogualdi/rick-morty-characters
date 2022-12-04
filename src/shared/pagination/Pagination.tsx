@@ -20,7 +20,8 @@ const paginationStyles = createUseStyles({
   },
   'pagination-item-link': {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    cursor: 'pointer'
   },
   active: {
     fontWeight: 'bolder',
@@ -71,11 +72,7 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }: Pagination) => {
                 currentPage === page ? styles.active : ''
               } `}
             >
-              <a
-                onClick={() => setCurrentPage(page)}
-                className={styles['pagination-item-link']}
-                href="#"
-              >
+              <a onClick={() => setCurrentPage(page)} className={styles['pagination-item-link']}>
                 {page}
               </a>
             </li>
