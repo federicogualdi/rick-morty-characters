@@ -17,7 +17,11 @@ const getCharacterDetails = async (
     locationApi(character.location.url),
     episodeApi(idEpisodes)
   ]);
-  setCharacterExtended({ character: character, location: location, episodes: episodes });
+  setCharacterExtended({
+    character: character,
+    location: location,
+    episodes: Array.isArray(episodes) ? episodes : [episodes]
+  });
 };
 
 const CharacterModal = (props: {

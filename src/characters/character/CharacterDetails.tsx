@@ -30,7 +30,6 @@ const characterStyles = createUseStyles({
   'character-container-data-container-episodes': {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '1.15rem',
     alignItems: 'center',
     flexFlow: 'wrap'
   },
