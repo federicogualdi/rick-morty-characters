@@ -11,20 +11,24 @@ const modalStyles = createUseStyles({
   darkBG: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
     position: 'fixed',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     width: '100vw',
     height: '100vh',
-    top: 0
+    top: 0,
+    overflow: 'auto'
   },
   modal: {
     backgroundColor: 'rgb(60, 62, 68)',
     color: 'white',
     zIndex: '10',
     borderRadius: '16px',
-    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)'
-    //maxHeight: '80vh'
+    boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)',
+    maxWidth: '60vw',
+    minWidth: '60vw',
+    height: 'fit-content',
+    marginTop: '2rem',
+    marginBottom: '2rem'
   },
   modalHeader: {
     height: '50px',
@@ -74,6 +78,11 @@ const modalStyles = createUseStyles({
     boxShadow: '0 10px 20px -10px rgba(255, 62, 78, 0.6)',
     transform: 'translateY(-5px)',
     background: '#ff3e4e'
+  },
+  '@media screen and (max-width: 600px)': {
+    modal: {
+      maxWidth: '90vw'
+    }
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Episode } from '../../api/rick-and-morty';
 import Gender from '../../shared/components/character/Gender';
@@ -31,7 +31,9 @@ const characterStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexFlow: 'wrap'
+    flexFlow: 'wrap',
+    width: '100%',
+    justifyContent: 'center'
   },
   'character-container-data-main': {
     display: 'flex',
@@ -46,15 +48,38 @@ const characterStyles = createUseStyles({
   'text-description': {
     color: 'grey',
     marginBottom: '0.5rem'
+  },
+  'text-right': {
+    width: '100%',
+    textAlign: 'right'
+  },
+  'text-pointer': {
+    marginTop: '1rem',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)'
   }
 });
 
-const episodesCharacter = (episodes?: Episode[]) => episodes?.map((e) => e.name)?.join(', ');
+const episodesCharacter = (episodes?: Episode[], limit?: number) =>
+  episodes
+    ?.slice(0, limit)
+    ?.map((e) => e.name)
+    ?.join(', ');
+
+const defaultLimit = 5;
 
 const CharacterDetails = (characterExtended: CharacterExtended) => {
-  useEffect(() => {
-    console.log(characterExtended);
-  }, [characterExtended]);
+  const [limit, setLimit] = useState<number>(defaultLimit);
+
+  const handleSetLimit = () => {
+    if (otherEpisodesAvailable) {
+      setLimit(limit + 2 * defaultLimit);
+      window.scrollTo(100, 0);
+    }
+  };
+
+  const otherEpisodesAvailable = limit < characterExtended?.episodes?.length!;
 
   const styles = characterStyles();
   return (
@@ -94,7 +119,15 @@ const CharacterDetails = (characterExtended: CharacterExtended) => {
             <section className={styles['character-container-data-container']}>
               <span className={styles['text-description']}>Episodes featured in:</span>
               <section className={styles['character-container-data-container-episodes']}>
-                {episodesCharacter(characterExtended.episodes)}
+                {episodesCharacter(characterExtended.episodes, limit)}
+                {otherEpisodesAvailable && (
+                  <span
+                    className={`${styles['text-description']} ${styles['text-right']} ${styles['text-pointer']}`}
+                    onClick={handleSetLimit}
+                  >
+                    Other...
+                  </span>
+                )}
               </section>
             </section>
           }

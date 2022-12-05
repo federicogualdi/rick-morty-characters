@@ -13,7 +13,9 @@ const paginationStyles = createUseStyles({
     listStyleType: 'none',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    padding: 0
+    padding: 0,
+    userSelect: 'none',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)'
   },
   'pagination-item': {
     margin: '0 0.5rem 0 0.5rem'
