@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getLocationByUrl, getEpisodeByIds, Character } from '../../api/rick-and-morty';
+import { getOriginByUrl } from '../../api/rick-and-morty/api/Origin.api';
 import Modal from '../../shared/modal/Modal';
 import { CharacterExtended } from '../../shared/models/CharacterExtended';
-import CharacterDetails from './CharacterDetails';
+import CharacterDetails from './character-details/CharacterDetails';
+
+const originApi = async (url: string) => await getOriginByUrl(url);
 
 const locationApi = async (url: string) => await getLocationByUrl(url);
 
@@ -13,15 +16,22 @@ const getCharacterDetails = async (
   setCharacterExtended: (data: CharacterExtended) => void
 ) => {
   const idEpisodes = character.episode.map((e) => e.split('/').pop()!);
-  const [location, episodes] = await Promise.all([
-    locationApi(character.location.url),
+  const characterExtended: CharacterExtended = { character: character };
+  await Promise.all([
+    originApi(character.origin.url)
+      .then((origin) => (characterExtended['origin'] = origin))
+      .catch((e: Error) => console.warn(e?.message)),
+    locationApi(character.location.url)
+      .then((location) => (characterExtended['location'] = location))
+      .catch((e: Error) => console.warn(e?.message)),
     episodeApi(idEpisodes)
+      .then(
+        (episodes) =>
+          (characterExtended['episodes'] = Array.isArray(episodes) ? episodes : [episodes])
+      )
+      .catch((e: Error) => console.warn(e?.message))
   ]);
-  setCharacterExtended({
-    character: character,
-    location: location,
-    episodes: Array.isArray(episodes) ? episodes : [episodes]
-  });
+  setCharacterExtended(characterExtended);
 };
 
 const CharacterModal = (props: {
@@ -33,9 +43,7 @@ const CharacterModal = (props: {
   });
 
   useEffect(() => {
-    getCharacterDetails(props.character, setCharacterExtended).catch((e: Error) =>
-      console.warn(e?.message)
-    );
+    getCharacterDetails(props.character, setCharacterExtended);
   }, [props.character]);
 
   return (
