@@ -10,7 +10,7 @@ const characterStyles = createUseStyles({
     alignItems: 'center',
     flexWrap: 'wrap',
     maxWidth: '1920px',
-    padding: '1.5rem'
+    margin: '1.5rem 2rem 1.5rem 2rem'
   }
 });
 

@@ -74,8 +74,7 @@ const CharacterDetails = (characterExtended: CharacterExtended) => {
 
   const handleSetLimit = () => {
     if (otherEpisodesAvailable) {
-      setLimit(limit + 2 * defaultLimit);
-      window.scrollTo(100, 0);
+      setLimit(characterExtended.episodes?.length!);
     }
   };
 
