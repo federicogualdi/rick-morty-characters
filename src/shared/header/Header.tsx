@@ -25,7 +25,9 @@ const Header = () => {
   const title = "'Rick And Morty' characters";
   return (
     <header className={styles['header-container']}>
-      <h1 className={styles['header-title']}>{title}</h1>
+      <h1 className={styles['header-title']} data-testid="header-title">
+        {title}
+      </h1>
     </header>
   );
 };

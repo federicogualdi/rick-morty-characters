@@ -3,6 +3,11 @@ import { createUseStyles } from 'react-jss';
 import useDebounce from '../utils/Debounce';
 import InputBox from './InputBox';
 
+type DebouncedInputBox = {
+  needStickStyle: boolean;
+  setDebouncedValue: (value: string) => void;
+};
+
 const debouncedInputBoxStyles = createUseStyles({
   inputBox: {
     position: 'sticky',
@@ -11,7 +16,7 @@ const debouncedInputBoxStyles = createUseStyles({
   }
 });
 
-const DebouncedInputBox = (needStickStyle: boolean, setDebouncedValue: (value: string) => void) => {
+const DebouncedInputBox = ({ needStickStyle, setDebouncedValue }: DebouncedInputBox) => {
   const [value, setvalue] = useState<string>();
 
   useDebounce(() => setDebouncedValue(value ?? ''), [value], 250);

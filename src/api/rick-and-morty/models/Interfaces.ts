@@ -60,13 +60,13 @@ export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown';
 export interface Location extends ResourceBase {
   type: string;
   dimension: string;
-  residents: Character[];
+  residents: string[];
 }
 
 export interface Episode extends ResourceBase {
   air_date: string;
   episode: string;
-  character: string[];
+  characters: string[];
 }
 
 export interface ApiResponse<T> {

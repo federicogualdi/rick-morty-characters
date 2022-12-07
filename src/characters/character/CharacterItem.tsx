@@ -80,30 +80,34 @@ const CharacterItem = (props: {
             className={styles['character-img']}
             src={props.character.image}
             alt={props.character.name}
+            data-testid="characteritem-image"
           />
         </div>
         <div className={styles['character-container-data']}>
           <section>
             <section className={styles['character-container-data-main']}>
-              <h2 className={styles['character-container-data-main-element']}>
+              <h2
+                className={styles['character-container-data-main-element']}
+                data-testid="characteritem-name"
+              >
                 {props.character.name}
               </h2>
-              {Gender(props.character.gender)}
+              <Gender gender={props.character.gender}></Gender>
             </section>
             <section className={styles['character-container-data-main']}>
-              {Status(props.character.status)}
-              <span>
+              <Status status={props.character.status}></Status>
+              <span data-testid="characteritem-status-species">
                 {props.character.status} - {props.character.species}
               </span>
             </section>
           </section>
           <section className={styles['character-container-data-container']}>
             <span className={styles['text-description']}>Origin:</span>
-            <a>{props.character.origin.name}</a>
+            <a data-testid="characteritem-origin">{props.character.origin.name}</a>
           </section>
           <section className={styles['character-container-data-container']}>
             <span className={styles['text-description']}>Last known location:</span>
-            <a>{props.character.location.name}</a>
+            <a data-testid="characteritem-location">{props.character.location.name}</a>
           </section>
         </div>
       </article>

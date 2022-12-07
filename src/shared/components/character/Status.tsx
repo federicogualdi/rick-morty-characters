@@ -1,6 +1,11 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { CharacterStatus } from '../../../api/rick-and-morty';
+import getColor from '../../utils/Status';
+
+type Status = {
+  status: CharacterStatus;
+};
 
 const statusStyles = (color: string) =>
   createUseStyles({
@@ -16,22 +21,12 @@ const statusStyles = (color: string) =>
     }
   });
 
-const getColor = (status: CharacterStatus) => {
-  switch (status) {
-    case 'Alive':
-      return '#00cf1f';
-    case 'Dead':
-      return '#eb4034';
-    case 'unknown':
-    default:
-      return 'grey';
-  }
-};
-
-const Status = (status: CharacterStatus) => {
+const Status = ({ status }: Status) => {
   const color = getColor(status);
   const styles = statusStyles(color);
-  return <div className={`${styles().icon} ${styles().circle}`}></div>;
+  return (
+    <div className={`${styles().icon} ${styles().circle}`} data-testid="characteritem-status"></div>
+  );
 };
 
 export default Status;
