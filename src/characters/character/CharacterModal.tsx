@@ -41,18 +41,22 @@ const CharacterModal = (props: {
   const [characterExtended, setCharacterExtended] = useState<CharacterExtended>({
     character: props.character
   });
+  const [dataReady, setDataReady] = useState<boolean>(false);
 
   useEffect(() => {
-    getCharacterDetails(props.character, setCharacterExtended);
+    const fetchData = async () => await getCharacterDetails(props.character, setCharacterExtended);
+    fetchData().then(() => setDataReady(true));
   }, [props.character]);
 
   return (
     <>
-      <Modal
-        title={props.character.name}
-        setIsOpen={props.setIsModalOpen}
-        body={CharacterDetails(characterExtended)}
-      />
+      {dataReady && (
+        <Modal
+          title={props.character.name}
+          setIsOpen={props.setIsModalOpen}
+          body={<CharacterDetails {...characterExtended}></CharacterDetails>}
+        />
+      )}
     </>
   );
 };
