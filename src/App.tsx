@@ -6,8 +6,8 @@ import Characters from './characters/Characters';
 function App() {
   return (
     <>
-      {Header()}
-      {Characters()}
+      <Header></Header>
+      <Characters></Characters>
     </>
   );
 }

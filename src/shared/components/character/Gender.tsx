@@ -1,9 +1,11 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { CharacterGender } from '../../../api/rick-and-morty';
-import IconFemale from '../icons/gender/IconFemale';
-import IconGenderless from '../icons/gender/IconGenderless';
-import IconMale from '../icons/gender/IconMale';
+import getIcon from '../../utils/Gender.utils';
+
+type Gender = {
+  gender: CharacterGender;
+};
 
 const genderStyles = createUseStyles({
   icon: {
@@ -13,25 +15,15 @@ const genderStyles = createUseStyles({
   }
 });
 
-const getIcon = (gender: CharacterGender) => {
-  switch (gender) {
-    case 'Female':
-      return <IconFemale></IconFemale>;
-    case 'Male':
-      return <IconMale></IconMale>;
-    case 'Genderless':
-      return <IconGenderless></IconGenderless>;
-    case 'unknown':
-    default:
-      return;
-  }
-};
-
-const Gender = (gender: CharacterGender) => {
+const Gender = ({ gender }: Gender) => {
   const styles = genderStyles();
   const icon = getIcon(gender);
-  if (!icon) return;
-  return <div className={styles.icon}>{icon}</div>;
+  if (!icon) return <></>;
+  return (
+    <div className={styles.icon} data-testid="characteritem-gender">
+      {icon}
+    </div>
+  );
 };
 
 export default Gender;

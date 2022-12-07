@@ -43,7 +43,10 @@ const CharacterDetailsLocationAbstract = ({
 }: CharacterDetailsLocationAbstract) => {
   const styles = characterDetailsLocationAbs();
   return (
-    <section className={styles['character-container-data-container']}>
+    <section
+      className={styles['character-container-data-container']}
+      data-testid="characterdetails-location-abstract"
+    >
       <span className={styles['text-description']}>{description}</span>
       <a className={styles.title}>
         {location.name}

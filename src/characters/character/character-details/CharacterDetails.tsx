@@ -55,19 +55,23 @@ const CharacterDetails = (characterExtended: CharacterExtended) => {
             className={styles['character-img']}
             src={characterExtended.character.image}
             alt={characterExtended.character.name}
+            data-testid="characterdetails-image"
           />
         </div>
         <div className={styles['character-container-data']}>
           <section className={styles['character-container-data-container']}>
             <section className={styles['character-container-data-main']}>
-              <h2 className={styles['character-container-data-main-element']}>
+              <h2
+                className={styles['character-container-data-main-element']}
+                data-testid="characterdetails-name"
+              >
                 {characterExtended.character.name}
               </h2>
-              {Gender(characterExtended.character.gender)}
+              <Gender gender={characterExtended.character.gender}></Gender>
             </section>
             <section className={styles['character-container-data-main']}>
-              {Status(characterExtended.character.status)}
-              <span>
+              <Status status={characterExtended.character.status}></Status>
+              <span data-testid="characterdetails-status-species">
                 {characterExtended.character.status} - {characterExtended.character.species}
               </span>
             </section>

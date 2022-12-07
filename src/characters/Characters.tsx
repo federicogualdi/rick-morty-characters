@@ -64,8 +64,11 @@ const Characters = () => {
   const styles = characterStyles();
   return (
     <>
-      {DebouncedInputBox(!isModalOpen, onChangeFilterName)}
-      <section className={styles['characters-container']}>
+      <DebouncedInputBox
+        needStickStyle={!isModalOpen}
+        setDebouncedValue={onChangeFilterName}
+      ></DebouncedInputBox>
+      <section data-testid="debounced-input-box" className={styles['characters-container']}>
         <>
           <Pagination nPages={nPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
           {CharacterList(characters, onCharacterClickHandler)}
