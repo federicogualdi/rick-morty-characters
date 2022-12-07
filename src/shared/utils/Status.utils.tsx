@@ -1,4 +1,3 @@
-import React from 'react';
 import { CharacterStatus } from '../../api/rick-and-morty';
 
 export default function getColor(status: CharacterStatus) {

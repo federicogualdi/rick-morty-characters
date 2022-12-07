@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { CharacterGender } from '../../../api/rick-and-morty';
-import getIcon from '../../utils/Gender';
+import getIcon from '../../utils/Gender.utils';
 
 type Gender = {
   gender: CharacterGender;

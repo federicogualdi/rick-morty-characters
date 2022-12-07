@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import useDebounce from '../utils/Debounce';
+import useDebounce from '../utils/Debounce.utils';
 import InputBox from './InputBox';
 
 type DebouncedInputBox = {

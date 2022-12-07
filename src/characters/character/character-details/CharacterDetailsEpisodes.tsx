@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Episode } from '../../../api/rick-and-morty';
+import {
+  defaultLimit,
+  episodesCharacter
+} from '../../../shared/utils/CharacterDetailsEpisodes.utils';
 
 type CharacterDetailsEpisodes = {
   episodes: Episode[];
@@ -36,14 +40,6 @@ const characterDetailsEpisodes = createUseStyles({
   }
 });
 
-const episodesCharacter = (episodes?: Episode[], limit?: number) =>
-  episodes
-    ?.slice(0, limit)
-    ?.map((e) => e.name)
-    ?.join(', ');
-
-const defaultLimit = 5;
-
 const CharacterDetailsEpisodes = ({ episodes }: CharacterDetailsEpisodes) => {
   const [limit, setLimit] = useState<number>(defaultLimit);
   const otherEpisodesAvailable = limit < episodes.length;
@@ -56,7 +52,10 @@ const CharacterDetailsEpisodes = ({ episodes }: CharacterDetailsEpisodes) => {
 
   const styles = characterDetailsEpisodes();
   return (
-    <section className={styles['character-container-data-container']}>
+    <section
+      className={styles['character-container-data-container']}
+      data-testid="characterdetails-episodes"
+    >
       <span className={styles['text-description']}>Episodes featured in:</span>
       <section className={styles['character-container-data-container-episodes']}>
         {episodesCharacter(episodes, limit)}

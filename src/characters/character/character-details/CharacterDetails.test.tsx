@@ -2,6 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { CharacterExtended } from '../../../shared/models/CharacterExtended';
 import CharacterDetails from './CharacterDetails';
+import {
+  defaultLimit,
+  episodesCharacter
+} from '../../../shared/utils/CharacterDetailsEpisodes.utils';
 
 const characterExtended: CharacterExtended = {
   character: {
@@ -393,14 +397,14 @@ const characterExtended: CharacterExtended = {
   ]
 };
 
-test('CharacterItem contains name', async () => {
+test('CharacterDetails contains name', async () => {
   render(<CharacterDetails {...characterExtended} />);
   const item = screen.getByTestId('characterdetails-name');
 
   expect(item.textContent).toBe(characterExtended.character.name);
 });
 
-test('CharacterItem contains status-species', async () => {
+test('CharacterDetails contains status-species', async () => {
   render(<CharacterDetails {...characterExtended} />);
   const item = screen.getByTestId('characterdetails-status-species');
 
@@ -409,7 +413,7 @@ test('CharacterItem contains status-species', async () => {
   );
 });
 
-test('CharacterItem contains gender', async () => {
+test('CharacterDetails contains gender', async () => {
   render(<CharacterDetails {...characterExtended} />);
   const item = screen.getByTestId('characteritem-gender');
 
@@ -417,10 +421,97 @@ test('CharacterItem contains gender', async () => {
   expect(item).toBeVisible();
 });
 
-test('CharacterItem contains image', async () => {
+test('CharacterDetails contains location and origin', async () => {
+  render(<CharacterDetails {...characterExtended} />);
+  const items = screen.getAllByTestId('characterdetails-location-abstract');
+  expect(items.length).toBeGreaterThan(0);
+  items.map((item) => expect(item).toBeVisible());
+});
+
+test('CharacterDetails has right value of location and origin', async () => {
+  render(<CharacterDetails {...characterExtended} />);
+  const items = screen.getAllByTestId('characterdetails-location-abstract');
+  expect(items.length).toBe(2);
+
+  items.forEach((item, index) =>
+    expect(item.textContent).toContain(
+      index === 0 ? characterExtended.origin?.name : characterExtended.location?.name
+    )
+  );
+});
+
+test('CharacterDetails contains only origin', async () => {
+  render(
+    <CharacterDetails
+      {...{
+        character: characterExtended.character,
+        origin: characterExtended.origin,
+        location: undefined
+      }}
+    />
+  );
+  const item = screen.getByTestId('characterdetails-location-abstract');
+
+  expect(item).toBeVisible();
+});
+
+test('CharacterDetails has right value origin', async () => {
+  render(
+    <CharacterDetails
+      {...{
+        character: characterExtended.character,
+        origin: characterExtended.origin,
+        location: undefined
+      }}
+    />
+  );
+  const item = screen.getByTestId('characterdetails-location-abstract');
+
+  expect(item.textContent).toContain(characterExtended.origin?.name);
+});
+
+test('CharacterDetails contains only location', async () => {
+  render(
+    <CharacterDetails
+      {...{
+        character: characterExtended.character,
+        location: characterExtended.location,
+        origin: undefined
+      }}
+    />
+  );
+  const item = screen.getByTestId('characterdetails-location-abstract');
+
+  expect(item).toBeVisible();
+});
+
+test('CharacterDetails has right value location', async () => {
+  render(
+    <CharacterDetails
+      {...{
+        character: characterExtended.character,
+        location: characterExtended.location,
+        origin: undefined
+      }}
+    />
+  );
+  const item = screen.getByTestId('characterdetails-location-abstract');
+
+  expect(item.textContent).toContain(characterExtended.location?.name);
+});
+
+test('CharacterDetails contains image', async () => {
   render(<CharacterDetails {...characterExtended} />);
   const item = screen.getByTestId('characterdetails-image');
 
   expect(item.nodeName).toBe('IMG');
+  expect(item).toBeVisible();
+});
+
+test('CharacterDetails contains episodes', async () => {
+  render(<CharacterDetails {...characterExtended} />);
+  const item = screen.getByTestId('characterdetails-episodes');
+
+  expect(item.textContent).toContain(episodesCharacter(characterExtended.episodes, defaultLimit));
   expect(item).toBeVisible();
 });

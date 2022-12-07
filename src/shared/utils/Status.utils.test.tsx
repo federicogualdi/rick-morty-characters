@@ -1,9 +1,5 @@
-import React from 'react';
 import { Character } from '../../api/rick-and-morty';
-import getIcon from './Gender';
-import IconMale from '../components/icons/gender/IconMale';
-import IconGenderless from '../components/icons/gender/IconGenderless';
-import IconFemale from '../components/icons/gender/IconFemale';
+import getColor from './Status.utils';
 
 const character: Character = {
   id: 1,
@@ -78,18 +74,14 @@ const character: Character = {
   created: '2017-11-04T18:48:46.250Z'
 };
 
-test('gender male must render icon male', async () => {
-  expect(getIcon(character.gender)).toStrictEqual(<IconMale />);
+test('status alive must render green', async () => {
+  expect(getColor(character.status)).toBe('#00cf1f');
 });
 
-test('gender female must render icon female', async () => {
-  expect(getIcon('Female')).toStrictEqual(<IconFemale />);
+test('status alive must render green', async () => {
+  expect(getColor('Dead')).toBe('#eb4034');
 });
 
-test('genderless must render icon genderless', async () => {
-  expect(getIcon('Genderless')).toStrictEqual(<IconGenderless />);
-});
-
-test('unknown gender must not render any icon', async () => {
-  expect(getIcon('unknown')).toBe(undefined);
+test('status alive must render green', async () => {
+  expect(getColor('unknown')).toBe('grey');
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { CharacterStatus } from '../../../api/rick-and-morty';
-import getColor from '../../utils/Status';
+import getColor from '../../utils/Status.utils';
 
 type Status = {
   status: CharacterStatus;
