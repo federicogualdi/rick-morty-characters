@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# How to Use
+This project was made to solve an assignment.
+Go to [**Rick And Morty Characters**](https://rickandmorty.federicogualdi.com) to try the client of rick-and-morty api :)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Excercise Assignment:
+## Each profile should include
+* The character’s picture
+* All the character's information (name, species, etc...)
+* Origin and location (name, dimension, amount of residents, etc…)
+* Name of the chapters the character is featured in
 
-In the project directory, you can run:
+## Scripts that must be included
+* yarn lint (with ESlint)
+* yarn prettify (with Prettier)
+* yarn test (with Jest)
+* yarn typecheck (with Typescript)
+* yarn start
 
-### `yarn start`
+Your code should be styled with a modern tool such as CSS-in-JS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Bonus
+* Your code follows a mobile- rst approach
+* The core utils are documented according to the TSDoc standard
+* You can choose to implement a pagination or in nite scroll
+* Code coverage
+* E2E tests and visual tests
+* Declarative and composable coding style (functional programming)
+* GitHub actions to run in CI
+* React Hooks
